@@ -31,13 +31,18 @@ namespace QnaMakerDiscordBot
 
         private async Task ClientOnMessageReceived(SocketMessage message)
         {
+            if (message.Channel is not IDMChannel)
+                return;
+
+            if (message.Author is ISelfUser || message.Author.IsBot || message.Author.IsWebhook)
+                return;
+
+            var typing = message.Channel.EnterTypingState();
             var response = await _faqService.AskAsync(message.Content);
             var answer = response.GetBestAnswer();
 
-            if (message is not IUserMessage userMessage || message.Author.IsBot || message.Author.IsWebhook)
-                return;
-
-            await userMessage.Channel.SendMessageAsync(answer.ToString());
+            await message.Channel.SendMessageAsync(answer.ToString());
+            typing.Dispose();
         }
     }
 }

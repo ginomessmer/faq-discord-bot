@@ -5,7 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
+using Microsoft.Extensions.Options;
 using QnaMakerDiscordBot.Abstractions;
+using QnaMakerDiscordBot.Options;
+using MessageActivity = Discord.API.MessageActivity;
 
 namespace QnaMakerDiscordBot
 {
@@ -13,19 +16,23 @@ namespace QnaMakerDiscordBot
     {
         private readonly DiscordSocketClient _client;
         private readonly IFaqService _faqService;
+        private readonly BotOptions _botOptions;
         private readonly ILogger<Worker> _logger;
 
-        public Worker(DiscordSocketClient client, IFaqService faqService, ILogger<Worker> logger)
+        public Worker(DiscordSocketClient client, IFaqService faqService,
+            IOptions<BotOptions> botOptions,
+            ILogger<Worker> logger)
         {
             _client = client;
             _faqService = faqService;
+            _botOptions = botOptions.Value;
             _logger = logger;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _client.MessageReceived += ClientOnMessageReceived;
-            return Task.CompletedTask;
+            await _client.SetGameAsync(_botOptions.StatusMessage);
         }
 
         private async Task ClientOnMessageReceived(SocketMessage message)

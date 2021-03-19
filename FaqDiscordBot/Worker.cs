@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using Microsoft.Extensions.Options;
-using QnaMakerDiscordBot.Abstractions;
-using QnaMakerDiscordBot.Options;
+using FaqDiscordBot.Abstractions;
+using FaqDiscordBot.Options;
 using MessageActivity = Discord.API.MessageActivity;
 
-namespace QnaMakerDiscordBot
+namespace FaqDiscordBot
 {
     public class Worker : BackgroundService
     {

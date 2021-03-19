@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QnaMakerDiscordBot.Abstractions
+namespace FaqDiscordBot.Abstractions
 {
     public interface IFaqService
     {

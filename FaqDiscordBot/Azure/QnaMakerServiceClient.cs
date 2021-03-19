@@ -7,9 +7,9 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using QnaMakerDiscordBot.Abstractions;
+using FaqDiscordBot.Abstractions;
 
-namespace QnaMakerDiscordBot.Azure
+namespace FaqDiscordBot.Azure
 {
     public class QnaMakerServiceClient : IFaqService
     {

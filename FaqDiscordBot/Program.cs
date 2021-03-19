@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
-using QnaMakerDiscordBot.Abstractions;
-using QnaMakerDiscordBot.Azure;
-using QnaMakerDiscordBot.Options;
+using FaqDiscordBot.Abstractions;
+using FaqDiscordBot.Azure;
+using FaqDiscordBot.Options;
 
-namespace QnaMakerDiscordBot
+namespace FaqDiscordBot
 {
     public class Program
     {

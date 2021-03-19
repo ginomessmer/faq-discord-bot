@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QnaMakerDiscordBot.Options
+namespace FaqDiscordBot.Options
 {
     public class BotOptions
     {

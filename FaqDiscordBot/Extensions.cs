@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using QnaMakerDiscordBot.Abstractions;
-using QnaMakerDiscordBot.Azure;
+using FaqDiscordBot.Abstractions;
+using FaqDiscordBot.Azure;
 
-namespace QnaMakerDiscordBot
+namespace FaqDiscordBot
 {
     public static class Extensions
     {

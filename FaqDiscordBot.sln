@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QnaMakerDiscordBot", "QnaMakerDiscordBot\QnaMakerDiscordBot.csproj", "{5992D131-7731-4BE8-9C4F-7D151FA9E3E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaqDiscordBot", "FaqDiscordBot\FaqDiscordBot.csproj", "{5992D131-7731-4BE8-9C4F-7D151FA9E3E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

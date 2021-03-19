@@ -1,4 +1,4 @@
-﻿namespace QnaMakerDiscordBot.Azure
+﻿namespace FaqDiscordBot.Azure
 {
     public class QnaMakerOptions
     {

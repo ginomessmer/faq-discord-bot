@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace QnaMakerDiscordBot.Azure
+namespace FaqDiscordBot.Azure
 {
     public class QnaMakerQuestionResponse
     {

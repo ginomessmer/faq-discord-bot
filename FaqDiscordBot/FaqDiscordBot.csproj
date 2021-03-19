@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>dotnet-QnaMakerDiscordBot-84AB1AB5-37CF-448A-A0BD-A6F1EF901475</UserSecretsId>
+    <UserSecretsId>dotnet-FaqDiscordBot-84AB1AB5-37CF-448A-A0BD-A6F1EF901475</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 

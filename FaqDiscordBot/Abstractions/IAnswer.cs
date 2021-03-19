@@ -1,4 +1,4 @@
-﻿namespace QnaMakerDiscordBot.Abstractions
+﻿namespace FaqDiscordBot.Abstractions
 {
     public interface IAnswer
     {

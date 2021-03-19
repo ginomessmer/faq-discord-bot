@@ -1,13 +1,9 @@
-﻿using System;
+﻿using FaqDiscordBot.Abstractions;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Net.Mime;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using FaqDiscordBot.Abstractions;
 
 namespace FaqDiscordBot.Azure
 {

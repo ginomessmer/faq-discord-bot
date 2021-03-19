@@ -20,6 +20,7 @@ TODO
 - `QnaMaker:KnowledgeBaseId`*: The knowledge base that serves as the QnA source.
 - `ConnectionStrings:DiscordBotToken`*: Self explanatory.
 - `ConnectionStrings:QnaServiceEndpoint`*: The service's endpoint, e.g. `https://*.cognitiveservices.azure.com`.
+- `Bot:StatusMessage`: The bot's status message.
 
 ## Contribute
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P72WHKK)

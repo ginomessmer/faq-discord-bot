@@ -1,5 +1,10 @@
-﻿public class QnaMakerQuestionResponse
+﻿using System.Collections.Generic;
+using System.Linq;
+
+public class QnaMakerQuestionResponse
 {
-    public QnaMakerAnswerResponse[] Answers { get; set; }
+    public IEnumerable<QnaMakerAnswerResponse> Answers { get; set; }
     public bool ActiveLearningEnabled { get; set; }
+
+    public QnaMakerAnswerResponse GetBestAnswer() => Answers.OrderByDescending(x => x.Score).FirstOrDefault();
 }

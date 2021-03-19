@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace QnaMakerDiscordBot.Azure
 {
-    public class QnaMakerServiceClient
+    public class QnaMakerServiceClient : IFaqService
     {
         private readonly HttpClient _httpClient;
         private readonly QnaMakerOptions _options;
@@ -21,18 +21,19 @@ namespace QnaMakerDiscordBot.Azure
             _options = options.Value;
 
             _httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _options.SubscriptionKey);
-            _httpClient.DefaultRequestHeaders.Add("Content-Type", MediaTypeNames.Application.Json);
         }
 
         public async Task<QnaMakerQuestionResponse> AskAsync(string question)
         {
             var response = await _httpClient.PostAsJsonAsync(
-                $"/knowledgebases/{_options.KnowledgeBaseId}/generateAnswer", new
+                $"/qnamaker/v5.0-preview.1/knowledgebases/{_options.KnowledgeBaseId}/generateAnswer", new
                 {
                     question
                 });
 
-            return await response.Content.ReadFromJsonAsync<QnaMakerQuestionResponse>();
+            response.EnsureSuccessStatusCode();
+            var answer = await response.Content.ReadFromJsonAsync<QnaMakerQuestionResponse>();
+            return answer;
         }
     }
 }

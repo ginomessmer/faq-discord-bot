@@ -7,6 +7,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using QnaMakerDiscordBot.Abstractions;
 
 namespace QnaMakerDiscordBot.Azure
 {
@@ -23,7 +24,7 @@ namespace QnaMakerDiscordBot.Azure
             _httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _options.SubscriptionKey);
         }
 
-        public async Task<QnaMakerQuestionResponse> AskAsync(string question)
+        public async Task<IEnumerable<IAnswer>> AskAsync(string question)
         {
             var response = await _httpClient.PostAsJsonAsync(
                 $"/qnamaker/v5.0-preview.1/knowledgebases/{_options.KnowledgeBaseId}/generateAnswer", new
@@ -33,7 +34,7 @@ namespace QnaMakerDiscordBot.Azure
 
             response.EnsureSuccessStatusCode();
             var answer = await response.Content.ReadFromJsonAsync<QnaMakerQuestionResponse>();
-            return answer;
+            return answer?.Answers;
         }
     }
 }

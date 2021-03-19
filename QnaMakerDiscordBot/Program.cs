@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
+using QnaMakerDiscordBot.Abstractions;
 using QnaMakerDiscordBot.Azure;
 
 namespace QnaMakerDiscordBot

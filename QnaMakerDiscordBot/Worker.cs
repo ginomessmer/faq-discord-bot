@@ -1,12 +1,11 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
+using QnaMakerDiscordBot.Abstractions;
 
 namespace QnaMakerDiscordBot
 {
@@ -37,12 +36,11 @@ namespace QnaMakerDiscordBot
             if (message.Author is ISelfUser || message.Author.IsBot || message.Author.IsWebhook)
                 return;
 
-            var typing = message.Channel.EnterTypingState();
+            using var typing = message.Channel.EnterTypingState();
             var response = await _faqService.AskAsync(message.Content);
             var answer = response.GetBestAnswer();
 
             await message.Channel.SendMessageAsync(answer.ToString());
-            typing.Dispose();
         }
     }
 }

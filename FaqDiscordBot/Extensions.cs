@@ -1,7 +1,6 @@
+using FaqDiscordBot.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
-using FaqDiscordBot.Abstractions;
-using FaqDiscordBot.Azure;
 
 namespace FaqDiscordBot
 {

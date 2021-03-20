@@ -17,12 +17,10 @@ namespace FaqDiscordBot.Providers.Local
     public class LuceneFaqService : IFaqService
     {
         private readonly IndexSearcher _indexSearcher;
-        private readonly GermanAnalyzer _analyzer;
 
-        public LuceneFaqService(IndexSearcher indexSearcher, GermanAnalyzer analyzer)
+        public LuceneFaqService(IndexSearcher indexSearcher)
         {
             _indexSearcher = indexSearcher;
-            _analyzer = analyzer;
         }
 
         /// <inheritdoc />
@@ -50,7 +48,7 @@ namespace FaqDiscordBot.Providers.Local
                 };
             });
 
-            return documents.Cast<IAnswer>();
+            return documents;
         }
     }
 }

@@ -2,9 +2,9 @@ name: .NET Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
   build:
@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet src restore
+      run: dotnet ./src restore
     - name: Build
-      run: dotnet src build --no-restore
+      run: dotnet ./src build --no-restore
     - name: Test
-      run: dotnet src test --no-build --verbosity normal
+      run: dotnet ./src test --no-build --verbosity normal

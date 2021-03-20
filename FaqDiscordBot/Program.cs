@@ -23,7 +23,7 @@ namespace FaqDiscordBot
                 {
                     services.Configure<BotOptions>(hostContext.Configuration.GetSection("Bot"));
 
-                    var provider = hostContext.Configuration.GetValue<string>("Mode") ?? BotOptions.Modes.Default;
+                    var provider = hostContext.Configuration.GetValue<string>("Provider") ?? BotOptions.Providers.Default;
                     services.AddFaqProvider(hostContext.Configuration, provider);
                     
                     // Discord

@@ -23,6 +23,7 @@ namespace FaqDiscordBot.Providers.Lucene
         private IEnumerable<IAnswer> Ask(string question)
         {
             var terms = question.Split(' ').Select(x => new Term(nameof(IAnswer.Answer), x));
+
             var query = new BooleanQuery();
             foreach (var term in terms)
             {

@@ -17,14 +17,14 @@ namespace FaqDiscordBot.Providers
     public static class ProviderExtensions
     {
         public static IServiceCollection AddFaqProvider(this IServiceCollection services, IConfiguration configuration,
-            string provider = BotOptions.Modes.Default)
+            string provider = BotOptions.Providers.Default)
         {
             return provider switch
             {
-                BotOptions.Modes.QnaMaker => services.AddQnaMakerFaqProvider(configuration),
-                BotOptions.Modes.Lucene => services.AddLuceneProvider(),
+                BotOptions.Providers.QnaMaker => services.AddQnaMakerFaqProvider(configuration),
+                BotOptions.Providers.Lucene => services.AddLuceneProvider(),
                 _ => throw new ArgumentOutOfRangeException(nameof(provider), provider, 
-                    $"Unrecognized provider. Use one of {string.Join(", ", BotOptions.Modes.All())}")
+                    $"Unrecognized provider. Use one of {string.Join(", ", BotOptions.Providers.All())}")
             };
         }
 

@@ -5,14 +5,14 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace FaqDiscordBot.Azure
+namespace FaqDiscordBot.Providers.Azure
 {
-    public class QnaMakerServiceClient : IFaqService
+    public class QnaMakerFaqService : IFaqService
     {
         private readonly HttpClient _httpClient;
         private readonly QnaMakerOptions _options;
 
-        public QnaMakerServiceClient(HttpClient httpClient, IOptions<QnaMakerOptions> options)
+        public QnaMakerFaqService(HttpClient httpClient, IOptions<QnaMakerOptions> options)
         {
             _httpClient = httpClient;
             _options = options.Value;

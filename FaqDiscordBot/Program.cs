@@ -1,12 +1,10 @@
 using Discord;
 using Discord.WebSocket;
-using FaqDiscordBot.Abstractions;
-using FaqDiscordBot.Azure;
 using FaqDiscordBot.Options;
+using FaqDiscordBot.Providers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,14 +21,11 @@ namespace FaqDiscordBot
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    // Bot
                     services.Configure<BotOptions>(hostContext.Configuration.GetSection("Bot"));
 
-                    // QnA
-                    services.Configure<QnaMakerOptions>(hostContext.Configuration.GetSection("QnaMaker"));
-                    services.AddHttpClient<IFaqService, QnaMakerServiceClient>(x => 
-                        x.BaseAddress = new Uri(hostContext.Configuration.GetConnectionString("QnaServiceEndpoint")));
-
+                    var provider = hostContext.Configuration.GetValue<string>("Provider") ?? BotOptions.Providers.Default;
+                    services.AddFaqProvider(hostContext.Configuration, provider);
+                    
                     // Discord
                     services.AddSingleton<DiscordSocketConfig>();
                     services.AddSingleton<DiscordSocketClient>(sp =>

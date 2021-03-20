@@ -9,6 +9,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using FaqDiscordBot.Providers;
 using FaqDiscordBot.Providers.Azure;
 using FaqDiscordBot.Providers.Local;
 using Lucene.Net.Analysis.De;
@@ -31,26 +32,11 @@ namespace FaqDiscordBot
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    // Bot
                     services.Configure<BotOptions>(hostContext.Configuration.GetSection("Bot"));
 
-                    // QnA
-                    //services.Configure<QnaMakerOptions>(hostContext.Configuration.GetSection("QnaMaker"));
-                    //services.AddHttpClient<IFaqService, QnaMakerFaqService>(x => 
-                    //    x.BaseAddress = new Uri(hostContext.Configuration.GetConnectionString("QnaServiceEndpoint")));
-
-                    // Lucene
-                    services.AddSingleton<GermanAnalyzer>(_ => new GermanAnalyzer(LuceneVersion.LUCENE_48));
-                    services.AddSingleton<IndexWriterConfig>(sp =>
-                        new IndexWriterConfig(LuceneVersion.LUCENE_48, sp.GetRequiredService<GermanAnalyzer>()));
-                    services.AddSingleton<IndexWriter>(sp => new IndexWriter(
-                        FSDirectory.Open(Path.Combine(Environment.CurrentDirectory, "index")),
-                        sp.GetRequiredService<IndexWriterConfig>()));
-                    services.AddTransient<IndexSearcher>(sp =>
-                        new IndexSearcher(sp.GetRequiredService<IndexWriter>().GetReader(true)));
-                    services.AddSingleton<IFaqService, LuceneFaqService>();
-                    services.AddHostedService<LuceneWorker>();
-
+                    var provider = hostContext.Configuration.GetValue<string>("Mode") ?? BotOptions.Modes.Default;
+                    services.AddFaqProvider(hostContext.Configuration, provider);
+                    
                     // Discord
                     services.AddSingleton<DiscordSocketConfig>();
                     services.AddSingleton<DiscordSocketClient>(sp =>

@@ -10,14 +10,14 @@ using Microsoft.Extensions.Logging;
 
 namespace FaqDiscordBot.Providers.Local
 {
-    public class LuceneWorker : BackgroundService
+    public class LuceneIndexerWorker : BackgroundService
     {
         private readonly IndexWriter _indexWriter;
         private readonly IHostEnvironment _environment;
-        private readonly ILogger<LuceneWorker> _logger;
+        private readonly ILogger<LuceneIndexerWorker> _logger;
 
-        public LuceneWorker(IndexWriter indexWriter, IHostEnvironment environment,
-            ILogger<LuceneWorker> logger)
+        public LuceneIndexerWorker(IndexWriter indexWriter, IHostEnvironment environment,
+            ILogger<LuceneIndexerWorker> logger)
         {
             _indexWriter = indexWriter;
             _environment = environment;
@@ -27,7 +27,7 @@ namespace FaqDiscordBot.Providers.Local
         /// <inheritdoc />
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var contents = _environment.ContentRootFileProvider.GetDirectoryContents("sources");
+            var contents = _environment.ContentRootFileProvider.GetDirectoryContents("data/sources");
             if (!contents.Exists)
                 return;
 

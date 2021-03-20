@@ -45,7 +45,8 @@ namespace FaqDiscordBot
             var response = await _faqService.AskAsync(message.Content);
             var answer = response.GetBestAnswer();
 
-            await message.Channel.SendMessageAsync(answer.ToString());
+            if (answer is not null)
+                await message.Channel.SendMessageAsync(answer.Answer);
         }
     }
 }

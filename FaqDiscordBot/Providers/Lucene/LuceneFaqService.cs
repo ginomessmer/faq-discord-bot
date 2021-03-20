@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FaqDiscordBot.Abstractions;
-using Lucene.Net.Analysis.De;
-using Lucene.Net.Analysis.Standard;
+﻿using FaqDiscordBot.Abstractions;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
-using Lucene.Net.Store;
-using Lucene.Net.Util;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace FaqDiscordBot.Providers.Local
+namespace FaqDiscordBot.Providers.Lucene
 {
     public class LuceneFaqService : IFaqService
     {

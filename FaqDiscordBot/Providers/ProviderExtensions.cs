@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FaqDiscordBot.Abstractions;
+﻿using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Options;
 using FaqDiscordBot.Providers.Azure;
-using FaqDiscordBot.Providers.Local;
+using FaqDiscordBot.Providers.Lucene;
 using Lucene.Net.Analysis.De;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
@@ -15,7 +9,8 @@ using Lucene.Net.Store;
 using Lucene.Net.Util;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
 
 namespace FaqDiscordBot.Providers
 {

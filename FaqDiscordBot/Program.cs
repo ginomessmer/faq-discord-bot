@@ -1,23 +1,12 @@
 using Discord;
 using Discord.WebSocket;
-using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Options;
+using FaqDiscordBot.Providers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using FaqDiscordBot.Providers;
-using FaqDiscordBot.Providers.Azure;
-using FaqDiscordBot.Providers.Local;
-using Lucene.Net.Analysis.De;
-using Lucene.Net.Analysis.Standard;
-using Lucene.Net.Index;
-using Lucene.Net.Search;
-using Lucene.Net.Store;
-using Lucene.Net.Util;
 
 namespace FaqDiscordBot
 {

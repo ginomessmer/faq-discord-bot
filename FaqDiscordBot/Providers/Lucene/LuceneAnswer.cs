@@ -1,6 +1,6 @@
 ﻿using FaqDiscordBot.Abstractions;
 
-namespace FaqDiscordBot.Providers.Local
+namespace FaqDiscordBot.Providers.Lucene
 {
     public class LuceneAnswer : IAnswer
     {

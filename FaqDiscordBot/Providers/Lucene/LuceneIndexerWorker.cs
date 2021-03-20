@@ -1,14 +1,14 @@
-﻿using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FaqDiscordBot.Abstractions;
+﻿using FaqDiscordBot.Abstractions;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace FaqDiscordBot.Providers.Local
+namespace FaqDiscordBot.Providers.Lucene
 {
     public class LuceneIndexerWorker : BackgroundService
     {

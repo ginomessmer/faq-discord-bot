@@ -1,7 +1,7 @@
-﻿using FaqDiscordBot.Abstractions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using FaqDiscordBot.Abstractions;
 
-namespace FaqDiscordBot.Azure
+namespace FaqDiscordBot.Providers.Azure
 {
     public class QnaMakerAnswerResponse : IAnswer
     {

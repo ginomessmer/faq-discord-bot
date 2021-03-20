@@ -1,7 +1,6 @@
 using Discord;
 using Discord.WebSocket;
 using FaqDiscordBot.Abstractions;
-using FaqDiscordBot.Azure;
 using FaqDiscordBot.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FaqDiscordBot.Providers.Azure;
 
 namespace FaqDiscordBot
 {

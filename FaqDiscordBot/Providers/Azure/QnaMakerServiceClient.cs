@@ -1,11 +1,11 @@
-﻿using FaqDiscordBot.Abstractions;
-using Microsoft.Extensions.Options;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using FaqDiscordBot.Abstractions;
+using Microsoft.Extensions.Options;
 
-namespace FaqDiscordBot.Azure
+namespace FaqDiscordBot.Providers.Azure
 {
     public class QnaMakerServiceClient : IFaqService
     {

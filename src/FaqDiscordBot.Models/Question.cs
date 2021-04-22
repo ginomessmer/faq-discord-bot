@@ -4,24 +4,27 @@ namespace FaqDiscordBot.Models
 {
     public class Question : Entity
     {
-        public Question(string question, ulong askedBy)
+        public ICollection<Phrasing> Phrasings { get; set; } = new List<Phrasing>();
+
+        public Answer Answer { get; set; }
+
+        public ulong UserId { get; set; }
+
+        public ulong MessageId { get; set; }
+
+        public Question(string question, ulong userId, ulong messageId)
         {
             Phrasings = new List<Phrasing>
             {
                 new Phrasing(question)
             };
 
-            AskedBy = askedBy;
+            UserId = userId;
+            MessageId = messageId;
         }
 
         public Question()
         {
         }
-
-        public ICollection<Phrasing> Phrasings { get; set; } = new List<Phrasing>();
-
-        public Answer Answer { get; set; }
-
-        public ulong AskedBy { get; set; }
     }
 }

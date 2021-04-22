@@ -19,7 +19,10 @@ namespace FaqDiscordBot.Handlers
         /// <inheritdoc />
         public async Task Handle(AnswerNotFoundEvent notification, CancellationToken cancellationToken)
         {
-            await _dbContext.Questions.AddAsync(new Question(notification.QuestionMessage.Content, notification.QuestionMessage.Author.Id), cancellationToken);
+            await _dbContext.Questions.AddAsync(new Question(notification.QuestionMessage.Content,
+                notification.QuestionMessage.Author.Id,
+                notification.QuestionMessage.Id), cancellationToken);
+            
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

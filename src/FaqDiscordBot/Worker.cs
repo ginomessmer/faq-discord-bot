@@ -42,9 +42,7 @@ namespace FaqDiscordBot
 
         private async Task ClientOnMessageReceived(SocketMessage message)
         {
-            using var scope = _serviceProvider.CreateScope();
-            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-
+            // Check
             if (message.Channel is not IDMChannel)
                 return;
 
@@ -54,7 +52,25 @@ namespace FaqDiscordBot
             if (message is not IUserMessage userMessage)
                 return;
 
+            using var scope = _serviceProvider.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+
+            if (userMessage.Reference is not null && message.Reference.MessageId.IsSpecified)
+            {
+                // Check if it's related to a question
+                await mediator.Publish(new MessageWithReferenceReceivedEvent(
+                        userMessage,
+                        userMessage.ReferencedMessage));
+                
+                return;
+            }
+
+
+
             using var typing = message.Channel.EnterTypingState();
+
+            // Ask
             var response = await _faqService.AskAsync(userMessage.Content);
             var answer = response.GetBestAnswer();
 
@@ -65,16 +81,8 @@ namespace FaqDiscordBot
                 return;
             }
 
-            try
-            {
-                await mediator.Publish(new AnswerNotFoundEvent(userMessage));
-                await SendFallbackReplyAsync(userMessage);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
+            await mediator.Publish(new AnswerNotFoundEvent(userMessage));
+            await SendFallbackReplyAsync(userMessage);
         }
 
         private async Task SendFallbackReplyAsync(IUserMessage message)
@@ -82,7 +90,7 @@ namespace FaqDiscordBot
             var replyMessage = await message.ReplyAsync(embed: new EmbedBuilder()
                 .WithTitle("Ich konnte leider keine Antwort finden")
                 .WithDescription("Aber du kannst deine Frage auf dem TINF Network stellen.\n" +
-                                 "Antworte auf diese Nachricht sobald du eine passende Antwort hast, um sie in die Wissensdatenbank aufzunehmen.")
+                                 "Antworte auf deine eigene Nachricht oben sobald du eine passende Antwort hast, um sie in die Wissensdatenbank aufzunehmen.")
                 .Build());
         }
     }

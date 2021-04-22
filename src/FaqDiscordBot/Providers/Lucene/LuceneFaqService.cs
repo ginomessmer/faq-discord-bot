@@ -38,7 +38,7 @@ namespace FaqDiscordBot.Providers.Lucene
                 return new LuceneAnswer
                 {
                     Answer = doc.Get(nameof(IAnswer.Answer)),
-                    Score = x.Score
+                    ConfidenceScore = x.Score
                 };
             });
 

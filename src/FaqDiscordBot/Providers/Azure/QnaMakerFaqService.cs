@@ -27,7 +27,7 @@ namespace FaqDiscordBot.Providers.Azure
                 {
                     question
                 });
-
+            
             response.EnsureSuccessStatusCode();
             var answer = await response.Content.ReadFromJsonAsync<QnaMakerQuestionResponse>();
             return answer?.Answers;

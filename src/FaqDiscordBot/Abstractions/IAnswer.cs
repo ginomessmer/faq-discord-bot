@@ -2,8 +2,8 @@
 {
     public interface IAnswer
     {
-        string Answer { get; set; }
+        string Answer { get; }
 
-        float Score { get; set; }
+        float ConfidenceScore { get; }
     }
 }

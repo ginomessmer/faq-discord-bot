@@ -6,7 +6,8 @@ namespace FaqDiscordBot
 {
     public static class Extensions
     {
-        public static IAnswer GetBestAnswer(this IEnumerable<IAnswer> answers) => 
-            answers.OrderByDescending(x => x.Score).FirstOrDefault();
+        public static IAnswer GetBestAnswer(this IEnumerable<IAnswer> answers) => answers
+            .OrderByDescending(x => x.ConfidenceScore)
+            .FirstOrDefault(x => x.ConfidenceScore > 0);
     }
 }

@@ -41,12 +41,30 @@ namespace FaqDiscordBot
             if (message.Author is ISelfUser || message.Author.IsBot || message.Author.IsWebhook)
                 return;
 
+            if (message is not IUserMessage userMessage)
+                return;
+
             using var typing = message.Channel.EnterTypingState();
-            var response = await _faqService.AskAsync(message.Content);
+            var response = await _faqService.AskAsync(userMessage.Content);
             var answer = response.GetBestAnswer();
 
             if (answer is not null)
-                await message.Channel.SendMessageAsync(answer.Answer);
+            {
+                // Answer and end
+                await userMessage.ReplyAsync(answer.Answer);
+                return;
+            }
+
+            await SendFallbackReplyAsync(userMessage);
+        }
+
+        private async Task SendFallbackReplyAsync(IUserMessage message)
+        {
+            var replyMessage = await message.ReplyAsync(embed: new EmbedBuilder()
+                .WithTitle("Ich konnte leider keine Antwort finden")
+                .WithDescription("Aber du kannst deine Frage auf dem TINF Network stellen.\n" +
+                                 "Antworte auf diese Nachricht sobald du eine passende Antwort hast, um sie in die Wissensdatenbank aufzunehmen.")
+                .Build());
         }
     }
 }

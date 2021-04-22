@@ -8,6 +8,6 @@ namespace FaqDiscordBot.Providers.Lucene
         public string Answer { get; set; }
 
         /// <inheritdoc />
-        public float Score { get; set; }
+        public float ConfidenceScore { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Discord;
 using Discord.WebSocket;
 using FaqDiscordBot.Abstractions;
@@ -7,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Threading;
 using System.Threading.Tasks;
+using FaqDiscordBot.Events;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FaqDiscordBot
 {
@@ -14,15 +18,18 @@ namespace FaqDiscordBot
     {
         private readonly DiscordSocketClient _client;
         private readonly IFaqService _faqService;
+        private readonly IServiceProvider _serviceProvider;
         private readonly BotOptions _botOptions;
         private readonly ILogger<Worker> _logger;
 
         public Worker(DiscordSocketClient client, IFaqService faqService,
             IOptions<BotOptions> botOptions,
+            IServiceProvider serviceProvider,
             ILogger<Worker> logger)
         {
             _client = client;
             _faqService = faqService;
+            _serviceProvider = serviceProvider;
             _botOptions = botOptions.Value;
             _logger = logger;
         }
@@ -35,6 +42,9 @@ namespace FaqDiscordBot
 
         private async Task ClientOnMessageReceived(SocketMessage message)
         {
+            using var scope = _serviceProvider.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
             if (message.Channel is not IDMChannel)
                 return;
 
@@ -55,7 +65,16 @@ namespace FaqDiscordBot
                 return;
             }
 
-            await SendFallbackReplyAsync(userMessage);
+            try
+            {
+                await mediator.Publish(new AnswerNotFoundEvent(userMessage));
+                await SendFallbackReplyAsync(userMessage);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         private async Task SendFallbackReplyAsync(IUserMessage message)

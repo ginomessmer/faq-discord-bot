@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
+using FaqDiscordBot.Infrastructure;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace FaqDiscordBot
 {
@@ -25,7 +28,13 @@ namespace FaqDiscordBot
 
                     var provider = hostContext.Configuration.GetValue<string>("Provider") ?? BotOptions.Providers.Default;
                     services.AddFaqProvider(hostContext.Configuration, provider);
-                    
+
+                    // DB
+                    services.AddDbContext<FaqDbContext>(x =>
+                        x.UseInMemoryDatabase("Data source=data.sqlite"));
+
+                    services.AddMediatR(typeof(Program));
+
                     // Discord
                     services.AddSingleton<DiscordSocketConfig>();
                     services.AddSingleton<DiscordSocketClient>(sp =>

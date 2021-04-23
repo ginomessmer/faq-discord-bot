@@ -1,9 +1,9 @@
-﻿using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using FaqDiscordBot.Abstractions;
+﻿using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Providers.Azure.Data;
 using Microsoft.Extensions.Options;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace FaqDiscordBot.Providers.Azure
 {

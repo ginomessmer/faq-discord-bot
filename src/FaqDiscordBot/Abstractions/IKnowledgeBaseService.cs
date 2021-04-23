@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using FaqDiscordBot.Providers.Azure.Data;
+﻿using FaqDiscordBot.Providers.Azure.Data;
+using System.Threading.Tasks;
 
 namespace FaqDiscordBot.Abstractions
 {

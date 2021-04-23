@@ -1,15 +1,15 @@
 using Discord;
 using Discord.WebSocket;
+using FaqDiscordBot.Infrastructure;
 using FaqDiscordBot.Options;
 using FaqDiscordBot.Providers;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
-using FaqDiscordBot.Infrastructure;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace FaqDiscordBot
 {

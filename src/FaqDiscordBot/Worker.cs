@@ -1,16 +1,16 @@
-using System;
 using Discord;
 using Discord.WebSocket;
 using FaqDiscordBot.Abstractions;
+using FaqDiscordBot.Events;
 using FaqDiscordBot.Options;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using FaqDiscordBot.Events;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace FaqDiscordBot
 {

@@ -1,11 +1,11 @@
-using System.Threading;
-using System.Threading.Tasks;
 using FaqDiscordBot.Events;
 using FaqDiscordBot.Infrastructure;
 using FaqDiscordBot.Models;
 using FaqDiscordBot.Options;
 using MediatR;
 using Microsoft.Extensions.Options;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FaqDiscordBot.Handlers
 {

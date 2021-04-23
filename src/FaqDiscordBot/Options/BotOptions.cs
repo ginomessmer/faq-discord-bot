@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace FaqDiscordBot.Options
+﻿namespace FaqDiscordBot.Options
 {
     public class BotOptions
     {

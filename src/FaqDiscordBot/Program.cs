@@ -53,10 +53,12 @@ namespace FaqDiscordBot
                         gate.WaitOne();
                         return client;
                     });
+
                     services.AddSingleton(x => x.GetRequiredService<DiscordSocketClient>() as IDiscordClient);
 
                     // Workers
                     services.AddHostedService<DmListenerWorker>();
+                    services.AddHostedService<KnowledgeBaseUpdateWorker>();
                 });
     }
 }

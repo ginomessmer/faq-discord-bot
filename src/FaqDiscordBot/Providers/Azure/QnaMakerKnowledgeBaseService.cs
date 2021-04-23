@@ -1,4 +1,5 @@
-﻿using FaqDiscordBot.Abstractions;
+﻿using System.Collections.Generic;
+using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Providers.Azure.Data;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
@@ -20,7 +21,7 @@ namespace FaqDiscordBot.Providers.Azure
             _httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _options.SubscriptionKey);
         }
 
-        public async Task ReplaceAsync(params QnaDto[] entries)
+        public async Task ReplaceAsync(IEnumerable<QnaDto> entries)
         {
             var response = await _httpClient.PutAsJsonAsync(
                 $"/qnamaker/v5.0-preview.1/knowledgebases/{_options.KnowledgeBaseId}", 
@@ -28,6 +29,8 @@ namespace FaqDiscordBot.Providers.Azure
                 {
                     qnAList = entries
                 });
+
+            var res = await response.Content.ReadAsStringAsync();
 
             response.EnsureSuccessStatusCode();
         }

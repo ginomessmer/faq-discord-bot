@@ -55,41 +55,7 @@ namespace FaqDiscordBot
             using var scope = _serviceProvider.CreateScope();
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-
-            if (userMessage.Reference is not null && message.Reference.MessageId.IsSpecified)
-            {
-                // Check if it's related to a question
-                await mediator.Publish(new MessageWithReferenceReceivedEvent(
-                        userMessage,
-                        userMessage.ReferencedMessage));
-                
-                return;
-            }
-
-            using var typing = message.Channel.EnterTypingState();
-
-            // Ask
-            var response = await _faqService.AskAsync(userMessage.Content);
-            var answer = response.GetBestAnswer();
-
-            if (answer is not null && answer.ConfidenceScore >= _botOptions.ConfidenceThreshold)
-            {
-                // Answer and end
-                await userMessage.ReplyAsync(answer.Answer);
-                return;
-            }
-
-            await mediator.Publish(new AnswerNotFoundEvent(userMessage));
-            await SendFallbackReplyAsync(userMessage);
-        }
-
-        private async Task SendFallbackReplyAsync(IUserMessage message)
-        {
-            var replyMessage = await message.ReplyAsync(embed: new EmbedBuilder()
-                .WithTitle("Ich konnte leider keine Antwort finden")
-                .WithDescription("Aber du kannst deine Frage auf dem TINF Network stellen.\n" +
-                                 "Antworte auf deine eigene Nachricht oben sobald du eine passende Antwort hast, um sie in die Wissensdatenbank aufzunehmen.")
-                .Build());
+            await mediator.Publish(new DmReceivedEvent(userMessage));
         }
     }
 }

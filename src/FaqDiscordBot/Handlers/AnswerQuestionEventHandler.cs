@@ -1,11 +1,11 @@
+using System.Threading;
+using System.Threading.Tasks;
 using Discord;
 using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Events;
 using FaqDiscordBot.Options;
 using MediatR;
 using Microsoft.Extensions.Options;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace FaqDiscordBot.Handlers
 {

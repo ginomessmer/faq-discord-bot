@@ -26,9 +26,9 @@ namespace FaqDiscordBot
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.Configure<BotOptions>(hostContext.Configuration.GetSection("Bot"));
-
-                    var provider = hostContext.Configuration.GetValue<string>("Provider") ?? BotOptions.Providers.Default;
-                    services.AddFaqProvider(hostContext.Configuration, provider);
+                    
+                    services.AddQnaMakerFaqProvider(hostContext.Configuration.GetSection("QnaMaker"),
+                        hostContext.Configuration.GetConnectionString("QnaServiceEndpoint"));
 
                     // DB
                     services.AddDbContext<FaqDbContext>(x =>

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using System.Net.Http;
 
 namespace FaqDiscordBot.Providers
 {
@@ -18,8 +19,10 @@ namespace FaqDiscordBot.Providers
         public static IServiceCollection AddQnaMakerFaqProvider(this IServiceCollection services, IConfigurationSection configuration, string endpoint)
         {
             services.Configure<QnaMakerOptions>(configuration);
-            services.AddHttpClient<IFaqService, QnaMakerFaqService>((sp, client) =>
-                client.BaseAddress = new Uri(endpoint));
+
+            void ConfigureClient(IServiceProvider sp, HttpClient client) => client.BaseAddress = new Uri(endpoint);
+            services.AddHttpClient<IFaqService, QnaMakerFaqService>(ConfigureClient);
+            services.AddHttpClient<IKnowledgeBaseService, QnaMakerKnowledgeBaseService>(ConfigureClient);
 
             return services;
         }

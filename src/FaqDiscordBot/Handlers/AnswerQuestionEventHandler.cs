@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Discord;
 using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Events;
+using FaqDiscordBot.Extensions;
 using FaqDiscordBot.Options;
 using MediatR;
 using Microsoft.Extensions.Options;

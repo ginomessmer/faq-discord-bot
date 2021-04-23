@@ -1,31 +1,31 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using FaqDiscordBot.Abstractions;
+using FaqDiscordBot.Events;
 using FaqDiscordBot.Options;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Threading;
-using System.Threading.Tasks;
-using FaqDiscordBot.Events;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace FaqDiscordBot
+namespace FaqDiscordBot.Workers
 {
-    public class Worker : BackgroundService
+    public class DmListenerWorker : BackgroundService
     {
         private readonly DiscordSocketClient _client;
         private readonly IFaqService _faqService;
         private readonly IServiceProvider _serviceProvider;
         private readonly BotOptions _botOptions;
-        private readonly ILogger<Worker> _logger;
+        private readonly ILogger<DmListenerWorker> _logger;
 
-        public Worker(DiscordSocketClient client, IFaqService faqService,
+        public DmListenerWorker(DiscordSocketClient client, IFaqService faqService,
             IOptions<BotOptions> botOptions,
             IServiceProvider serviceProvider,
-            ILogger<Worker> logger)
+            ILogger<DmListenerWorker> logger)
         {
             _client = client;
             _faqService = faqService;

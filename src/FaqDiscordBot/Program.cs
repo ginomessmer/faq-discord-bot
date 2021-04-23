@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
+using FaqDiscordBot.Workers;
 
 namespace FaqDiscordBot
 {
@@ -55,7 +56,7 @@ namespace FaqDiscordBot
                     services.AddSingleton(x => x.GetRequiredService<DiscordSocketClient>() as IDiscordClient);
 
                     // Workers
-                    services.AddHostedService<Worker>();
+                    services.AddHostedService<DmListenerWorker>();
                 });
     }
 }

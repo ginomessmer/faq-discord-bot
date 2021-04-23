@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+  bot:
+    environment:
+        ConnectionStrings__DefaultDbContext: Host=db;Database=faqs;Username=postgres;Password=postgres
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: faqs
+    ports:
+    - 5432:5432 

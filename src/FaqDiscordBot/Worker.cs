@@ -66,15 +66,13 @@ namespace FaqDiscordBot
                 return;
             }
 
-
-
             using var typing = message.Channel.EnterTypingState();
 
             // Ask
             var response = await _faqService.AskAsync(userMessage.Content);
             var answer = response.GetBestAnswer();
 
-            if (answer is not null)
+            if (answer is not null && answer.ConfidenceScore >= _botOptions.ConfidenceThreshold)
             {
                 // Answer and end
                 await userMessage.ReplyAsync(answer.Answer);

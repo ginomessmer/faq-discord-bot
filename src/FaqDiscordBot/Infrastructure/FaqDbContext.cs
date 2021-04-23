@@ -3,15 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FaqDiscordBot.Infrastructure
 {
-    public class FaqDbContext : DbContext
+    public sealed class FaqDbContext : DbContext
     {
         public DbSet<Question> Questions { get; set; }
 
-        public FaqDbContext()
-        {
-        }
-
-        public FaqDbContext(DbContextOptions options) : base(options)
+        public FaqDbContext(DbContextOptions<FaqDbContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

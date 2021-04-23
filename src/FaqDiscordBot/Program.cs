@@ -22,6 +22,7 @@ namespace FaqDiscordBot
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(x => x.AddUserSecrets(typeof(Program).Assembly))
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.Configure<BotOptions>(hostContext.Configuration.GetSection("Bot"));
@@ -31,7 +32,7 @@ namespace FaqDiscordBot
 
                     // DB
                     services.AddDbContext<FaqDbContext>(x =>
-                        x.UseInMemoryDatabase("Data source=data.sqlite"));
+                        x.UseNpgsql(hostContext.Configuration.GetConnectionString("DefaultDbContext")));
 
                     services.AddMediatR(typeof(Program));
 
@@ -51,6 +52,7 @@ namespace FaqDiscordBot
                         gate.WaitOne();
                         return client;
                     });
+                    services.AddSingleton(x => x.GetRequiredService<DiscordSocketClient>() as IDiscordClient);
 
                     // Workers
                     services.AddHostedService<Worker>();

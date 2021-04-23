@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaqDiscordBot", "FaqDiscord
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaqDiscordBot.Models", "FaqDiscordBot.Models\FaqDiscordBot.Models.csproj", "{838FD0FE-2CC0-4309-97A0-15B63BEAB85C}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A7789C0A-031D-4E2B-8B66-CF07987AC8BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{838FD0FE-2CC0-4309-97A0-15B63BEAB85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{838FD0FE-2CC0-4309-97A0-15B63BEAB85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{838FD0FE-2CC0-4309-97A0-15B63BEAB85C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7789C0A-031D-4E2B-8B66-CF07987AC8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7789C0A-031D-4E2B-8B66-CF07987AC8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7789C0A-031D-4E2B-8B66-CF07987AC8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7789C0A-031D-4E2B-8B66-CF07987AC8BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

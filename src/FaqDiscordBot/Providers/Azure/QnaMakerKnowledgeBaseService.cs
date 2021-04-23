@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Providers.Azure.Data;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using FaqDiscordBot.Models;
 
 namespace FaqDiscordBot.Providers.Azure
 {
@@ -33,6 +35,15 @@ namespace FaqDiscordBot.Providers.Azure
             var res = await response.Content.ReadAsStringAsync();
 
             response.EnsureSuccessStatusCode();
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<QnaDto>> DownloadAsync(bool pullProduction = true)
+        {
+            var environment = pullProduction ? "Prod" : "Test";
+            var response = await _httpClient.GetFromJsonAsync<DownloadKbDto>($"/qnamaker/v5.0-preview.1/knowledgebases/{_options.KnowledgeBaseId}/{environment}/qna");
+
+            return response?.QnaDocuments;
         }
     }
 }

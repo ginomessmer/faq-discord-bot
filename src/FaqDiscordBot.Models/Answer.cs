@@ -9,6 +9,10 @@
             UserId = userId;
         }
 
+        public Answer()
+        {
+        }
+
         public string Text { get; set; }
 
         public ulong MessageId { get; set; }

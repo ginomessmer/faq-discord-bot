@@ -59,6 +59,7 @@ namespace FaqDiscordBot
                     // Workers
                     services.AddHostedService<DmListenerWorker>();
                     services.AddHostedService<KnowledgeBaseUpdateWorker>();
+                    services.AddHostedService<InitializeDatabaseWorker>();
                 });
     }
 }

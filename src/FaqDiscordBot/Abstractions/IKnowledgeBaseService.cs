@@ -7,5 +7,7 @@ namespace FaqDiscordBot.Abstractions
     public interface IKnowledgeBaseService
     {
         Task ReplaceAsync(IEnumerable<QnaDto> entries);
+
+        Task<IEnumerable<QnaDto>> DownloadAsync(bool pullProduction = true);
     }
 }

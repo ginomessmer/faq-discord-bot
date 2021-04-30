@@ -13,6 +13,8 @@ namespace FaqDiscordBot.Models
 
         public ulong MessageId { get; set; }
 
+        public bool IsApproved { get; set; }
+
         public Question(string question, ulong userId, ulong messageId)
         {
             Phrasings = new List<Phrasing>

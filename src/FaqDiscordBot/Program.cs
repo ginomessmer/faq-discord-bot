@@ -1,15 +1,16 @@
 using Discord;
 using Discord.WebSocket;
+using FaqDiscordBot.Infrastructure;
 using FaqDiscordBot.Options;
 using FaqDiscordBot.Providers;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
-using FaqDiscordBot.Infrastructure;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
+using FaqDiscordBot.Workers;
 
 namespace FaqDiscordBot
 {
@@ -26,9 +27,9 @@ namespace FaqDiscordBot
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.Configure<BotOptions>(hostContext.Configuration.GetSection("Bot"));
-
-                    var provider = hostContext.Configuration.GetValue<string>("Provider") ?? BotOptions.Providers.Default;
-                    services.AddFaqProvider(hostContext.Configuration, provider);
+                    
+                    services.AddQnaMakerFaqProvider(hostContext.Configuration.GetSection("QnaMaker"),
+                        hostContext.Configuration.GetConnectionString("QnaServiceEndpoint"));
 
                     // DB
                     services.AddDbContext<FaqDbContext>(x =>
@@ -52,10 +53,13 @@ namespace FaqDiscordBot
                         gate.WaitOne();
                         return client;
                     });
+
                     services.AddSingleton(x => x.GetRequiredService<DiscordSocketClient>() as IDiscordClient);
 
                     // Workers
-                    services.AddHostedService<Worker>();
+                    services.AddHostedService<DmListenerWorker>();
+                    services.AddHostedService<KnowledgeBaseUpdateWorker>();
+                    services.AddHostedService<InitializeDatabaseWorker>();
                 });
     }
 }

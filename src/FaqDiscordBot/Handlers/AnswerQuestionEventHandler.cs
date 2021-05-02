@@ -62,16 +62,6 @@ namespace FaqDiscordBot.Handlers
             _telemetryClient.TrackEvent("Answer not found");
             
             await _mediator.Publish(new AnswerNotFoundEvent(notification.Message), cancellationToken);
-            await SendFallbackReplyAsync(notification.Message);
-        }
-
-        private async Task SendFallbackReplyAsync(IUserMessage message)
-        {
-            var replyMessage = await message.ReplyAsync(embed: new EmbedBuilder()
-                .WithTitle("Ich konnte leider keine Antwort finden")
-                .WithDescription("Aber du kannst deine Frage auf dem TINF Network stellen.\n" +
-                                 "Antworte auf deine eigene Nachricht oben sobald du eine passende Antwort hast, um sie in die Wissensdatenbank aufzunehmen.")
-                .Build());
         }
     }
 }

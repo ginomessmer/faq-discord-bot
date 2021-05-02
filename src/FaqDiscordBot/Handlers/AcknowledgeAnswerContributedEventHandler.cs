@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace FaqDiscordBot.Handlers
 {
-    public class AcknowledgeAddedAnswerEventHandler : INotificationHandler<AnswerAddedToQuestionEvent>
+    public class AcknowledgeAnswerContributedEventHandler : INotificationHandler<AnswerAddedToQuestionEvent>
     {
         private readonly FaqDbContext _dbContext;
         private readonly IDiscordClient _client;
 
-        public AcknowledgeAddedAnswerEventHandler(FaqDbContext dbContext, IDiscordClient client)
+        public AcknowledgeAnswerContributedEventHandler(FaqDbContext dbContext, IDiscordClient client)
         {
             _dbContext = dbContext;
             _client = client;
@@ -31,6 +31,7 @@ namespace FaqDiscordBot.Handlers
             var dmChannel = await user.GetOrCreateDMChannelAsync();
             await dmChannel.SendMessageAsync(embed: new EmbedBuilder()
                 .WithDescription($"Danke. Deine Antwort zu `{question}` wurde in die Wissensdatenbank aufgenommen.")
+                .WithColor(Color.Green)
                 .Build());
         }
     }

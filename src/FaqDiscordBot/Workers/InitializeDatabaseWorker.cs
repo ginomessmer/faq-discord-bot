@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Infrastructure;
 using FaqDiscordBot.Models;
+using FaqDiscordBot.Properties;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -28,10 +29,22 @@ namespace FaqDiscordBot.Workers
         {
             using var scope = _serviceProvider.CreateScope();
             await using var dbContext = scope.ServiceProvider.GetRequiredService<FaqDbContext>();
-            var knowledgeBaseService = scope.ServiceProvider.GetRequiredService<IKnowledgeBaseService>();
 
             if (await dbContext.Questions.AnyAsync(stoppingToken))
+            {
+                _logger.LogInformation("DB already contains entries. Skipping seeding...");
                 return;
+            }
+
+
+            // Add tutorial message
+            await dbContext.Questions.AddAsync(new Question("tutorial", 0, 0)
+            {
+                Answer = new Answer(Resources.UnansweredQuestionInstructionsText_Desc_Rookie, 0, 0)
+            }, stoppingToken);
+
+            // Pull from KB
+            var knowledgeBaseService = scope.ServiceProvider.GetRequiredService<IKnowledgeBaseService>();
 
             var entries = await knowledgeBaseService.DownloadAsync();
             var items = entries.Select(x => new Question
@@ -42,8 +55,8 @@ namespace FaqDiscordBot.Workers
             }).ToList();
 
             await dbContext.Questions.AddRangeAsync(items, stoppingToken);
-            await dbContext.SaveChangesAsync(stoppingToken);
 
+            await dbContext.SaveChangesAsync(stoppingToken);
             _logger.LogInformation("Seeded the database with {EntriesCount} using the existing remote KB", items.Count);
         }
     }

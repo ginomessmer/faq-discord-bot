@@ -35,6 +35,7 @@ namespace FaqDiscordBot
                     services.AddDbContext<FaqDbContext>(x =>
                         x.UseNpgsql(hostContext.Configuration.GetConnectionString("DefaultDbContext")));
 
+                    services.AddMemoryCache();
                     services.AddMediatR(typeof(Program));
 
                     // Discord

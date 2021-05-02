@@ -7,6 +7,8 @@ using FaqDiscordBot.Abstractions;
 using FaqDiscordBot.Events;
 using FaqDiscordBot.Options;
 using MediatR;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -21,17 +23,20 @@ namespace FaqDiscordBot.Workers
         private readonly IServiceProvider _serviceProvider;
         private readonly BotOptions _botOptions;
         private readonly ILogger<DmListenerWorker> _logger;
+        private readonly TelemetryClient _telemetryClient;
 
         public DmListenerWorker(DiscordSocketClient client, IFaqService faqService,
             IOptions<BotOptions> botOptions,
             IServiceProvider serviceProvider,
-            ILogger<DmListenerWorker> logger)
+            ILogger<DmListenerWorker> logger,
+            TelemetryClient telemetryClient)
         {
             _client = client;
             _faqService = faqService;
             _serviceProvider = serviceProvider;
             _botOptions = botOptions.Value;
             _logger = logger;
+            _telemetryClient = telemetryClient;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -56,6 +61,7 @@ namespace FaqDiscordBot.Workers
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
             await mediator.Publish(new DmReceivedEvent(userMessage));
+            _telemetryClient.TrackEvent("Message received");
         }
     }
 }

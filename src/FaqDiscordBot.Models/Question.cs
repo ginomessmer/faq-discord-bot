@@ -11,7 +11,7 @@ namespace FaqDiscordBot.Models
 
         public ulong UserId { get; set; }
 
-        public ulong MessageId { get; set; }
+        public QuestionMeta Meta { get; set; }
 
         public bool IsApproved { get; set; }
 
@@ -23,7 +23,11 @@ namespace FaqDiscordBot.Models
             };
 
             UserId = userId;
-            MessageId = messageId;
+
+            Meta = new QuestionMeta
+            {
+                MessageId = messageId
+            };
         }
 
         public Question()

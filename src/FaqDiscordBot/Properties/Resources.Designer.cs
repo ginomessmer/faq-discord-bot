@@ -22,7 +22,7 @@ namespace FaqDiscordBot.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace FaqDiscordBot.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FaqDiscordBot.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace FaqDiscordBot.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace FaqDiscordBot.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] quickstart {
+        public static byte[] quickstart {
             get {
                 object obj = ResourceManager.GetObject("quickstart", resourceCulture);
                 return ((byte[])(obj));
@@ -73,52 +73,61 @@ namespace FaqDiscordBot.Properties {
         /// <summary>
         ///   Looks up a localized string similar to https://raw.githubusercontent.com/tinf-network/faqs/main/assets/quickstart.gif.
         /// </summary>
-        internal static string UnansweredQuestionInstructionsImage_Url {
+        public static string UnansweredQuestionInstructionsImage_Url {
             get {
                 return ResourceManager.GetString("UnansweredQuestionInstructionsImage_Url", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stelle deine Frage auf dem TINF Network Server und antworte auf deine Nachricht hier sobald du eine Antwort hast, um sie in die Wissensdatenbank aufzunehmen.
+        ///   Looks up a localized string similar to Post your question on the TINF Network Server and reply to your message here as soon as you have an answer so that we can add it to the knowledge base.
         ///
-        ///Unsicher? Antworte mit `tutorial` um eine Anleitung zu erhalten..
+        ///Not sure? Reply with `tutorial` to be guided..
         /// </summary>
-        internal static string UnansweredQuestionInstructionsText_Desc_Pro {
+        public static string UnansweredQuestionInstructionsText_Desc_Pro {
             get {
                 return ResourceManager.GetString("UnansweredQuestionInstructionsText_Desc_Pro", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hilfe dabei, deine Frage in die Wissensdatenbank aufzunehmen.
+        ///   Looks up a localized string similar to Help add your question to the knowledge base.
         ///
-        ///**Und so geht es**:
-        ///**1.** Stelle deine Frage auf dem TINF Network Server (bspw. im #dhbw-overflow Kanal).
-        ///**2.** Sobald du eine Antwort erhalten hast, antworte hier auf deine Ursprungsnachricht (siehe GIF) in möglichst ausführlicher Fassung.
-        ///**3.** Deine Antwort wird überprüft und anschließend in die Wissensdatenbank aufgenommen, sodass sie anderen Studierenden zur Verfügung steht.
+        ///**Here&apos;s how it works**:
+        ///**1.** Post your question on the TINF Network Server (e.g. in the #dhbw-overflow channel).
+        ///**2.** Once you have received an answer, reply here to your original message (see GIF) as detailed as possible.
+        ///**3.** Your response will be reviewed and then added to the knowledge base so that it is available to other students.
         ///
-        ///Melde dich beim Orga-Team, falls du Schwierigkeiten dab [rest of string was truncated]&quot;;.
+        ///Contact the Orga team if you have trouble doing this. Your participation will help other and future students..
         /// </summary>
-        internal static string UnansweredQuestionInstructionsText_Desc_Rookie {
+        public static string UnansweredQuestionInstructionsText_Desc_Rookie {
             get {
                 return ResourceManager.GetString("UnansweredQuestionInstructionsText_Desc_Rookie", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ich konnte keine Antwort finden.
+        ///   Looks up a localized string similar to You can contribute your answer within {0}..
         /// </summary>
-        internal static string UnansweredQuestionInstructionsText_Title_Pro {
+        public static string UnansweredQuestionInstructionsText_Footnote {
+            get {
+                return ResourceManager.GetString("UnansweredQuestionInstructionsText_Footnote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I could not find an answer.
+        /// </summary>
+        public static string UnansweredQuestionInstructionsText_Title_Pro {
             get {
                 return ResourceManager.GetString("UnansweredQuestionInstructionsText_Title_Pro", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ich konnte keine Antwort finden. Du kannst trotzdem fündig werden:.
+        ///   Looks up a localized string similar to I could not find an answer. However, you can still find what you are looking for:.
         /// </summary>
-        internal static string UnansweredQuestionInstructionsText_Title_Rookie {
+        public static string UnansweredQuestionInstructionsText_Title_Rookie {
             get {
                 return ResourceManager.GetString("UnansweredQuestionInstructionsText_Title_Rookie", resourceCulture);
             }

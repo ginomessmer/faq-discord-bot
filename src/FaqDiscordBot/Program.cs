@@ -58,9 +58,11 @@ namespace FaqDiscordBot
                     services.AddSingleton(x => x.GetRequiredService<DiscordSocketClient>() as IDiscordClient);
 
                     // Workers
+                    services.AddHostedService<BotInitializeWorker>();
                     services.AddHostedService<DmListenerWorker>();
                     services.AddHostedService<KnowledgeBaseUpdateWorker>();
                     services.AddHostedService<InitializeDatabaseWorker>();
+                    services.AddHostedService<AutoPurgeWorker>();
 
                     // Telemetry
                     services.AddApplicationInsightsTelemetryWorkerService();

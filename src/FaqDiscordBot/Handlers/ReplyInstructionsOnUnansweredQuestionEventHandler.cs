@@ -30,18 +30,18 @@ namespace FaqDiscordBot.Handlers
                     .WithTitle(Resources.UnansweredQuestionInstructionsText_Title_Rookie)
                     .WithDescription(Resources.UnansweredQuestionInstructionsText_Desc_Rookie)
                     .WithColor(Color.Red)
+                    .WithImageUrl(Resources.UnansweredQuestionInstructionsImage_Url)
                     .Build());
 
                 _cache.Set(key, notification.QuestionMessage.Id, TimeSpan.FromDays(3));
+                return;
             }
-            else
-            {
-                await notification.QuestionMessage.ReplyAsync(embed: new EmbedBuilder()
-                    .WithTitle(Resources.UnansweredQuestionInstructionsText_Title_Pro)
-                    .WithDescription(Resources.UnansweredQuestionInstructionsText_Desc_Pro)
-                    .WithColor(Color.Red)
-                    .Build());
-            }
+
+            await notification.QuestionMessage.ReplyAsync(embed: new EmbedBuilder()
+                .WithTitle(Resources.UnansweredQuestionInstructionsText_Title_Pro)
+                .WithDescription(Resources.UnansweredQuestionInstructionsText_Desc_Pro)
+                .WithColor(Color.Red)
+                .Build());
         }
     }
 }

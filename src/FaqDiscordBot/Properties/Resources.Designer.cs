@@ -61,6 +61,25 @@ namespace FaqDiscordBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] quickstart {
+            get {
+                object obj = ResourceManager.GetObject("quickstart", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://raw.githubusercontent.com/tinf-network/faqs/main/assets/quickstart.gif.
+        /// </summary>
+        internal static string UnansweredQuestionInstructionsImage_Url {
+            get {
+                return ResourceManager.GetString("UnansweredQuestionInstructionsImage_Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stelle deine Frage auf dem TINF Network Server und antworte auf deine Nachricht hier sobald du eine Antwort hast, um sie in die Wissensdatenbank aufzunehmen.
         ///
         ///Unsicher? Antworte mit `tutorial` um eine Anleitung zu erhalten..
@@ -76,7 +95,7 @@ namespace FaqDiscordBot.Properties {
         ///
         ///**Und so geht es**:
         ///**1.** Stelle deine Frage auf dem TINF Network Server (bspw. im #dhbw-overflow Kanal).
-        ///**2.** Sobald du eine Antwort erhalten hast, antworte hier auf deine Ursprungsnachricht in möglichst ausführlicher Fassung (siehe GIF).
+        ///**2.** Sobald du eine Antwort erhalten hast, antworte hier auf deine Ursprungsnachricht (siehe GIF) in möglichst ausführlicher Fassung.
         ///**3.** Deine Antwort wird überprüft und anschließend in die Wissensdatenbank aufgenommen, sodass sie anderen Studierenden zur Verfügung steht.
         ///
         ///Melde dich beim Orga-Team, falls du Schwierigkeiten dab [rest of string was truncated]&quot;;.

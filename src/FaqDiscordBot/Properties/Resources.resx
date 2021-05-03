@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="quickstart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quickstart.gif;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UnansweredQuestionInstructionsImage_Url" xml:space="preserve">
+    <value>https://raw.githubusercontent.com/tinf-network/faqs/main/assets/quickstart.gif</value>
+  </data>
   <data name="UnansweredQuestionInstructionsText_Desc_Pro" xml:space="preserve">
     <value>Stelle deine Frage auf dem TINF Network Server und antworte auf deine Nachricht hier sobald du eine Antwort hast, um sie in die Wissensdatenbank aufzunehmen.
 
@@ -127,7 +134,7 @@ Unsicher? Antworte mit `tutorial` um eine Anleitung zu erhalten.</value>
 
 **Und so geht es**:
 **1.** Stelle deine Frage auf dem TINF Network Server (bspw. im #dhbw-overflow Kanal).
-**2.** Sobald du eine Antwort erhalten hast, antworte hier auf deine Ursprungsnachricht in möglichst ausführlicher Fassung (siehe GIF).
+**2.** Sobald du eine Antwort erhalten hast, antworte hier auf deine Ursprungsnachricht (siehe GIF) in möglichst ausführlicher Fassung.
 **3.** Deine Antwort wird überprüft und anschließend in die Wissensdatenbank aufgenommen, sodass sie anderen Studierenden zur Verfügung steht.
 
 Melde dich beim Orga-Team, falls du Schwierigkeiten dabei hast. Dein Mitwirken hilft anderen und zukünftigen Studierenden.</value>

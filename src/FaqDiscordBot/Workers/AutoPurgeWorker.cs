@@ -12,14 +12,6 @@ using Microsoft.Extensions.Options;
 
 namespace FaqDiscordBot.Workers
 {
-    public class BotInitializeWorker : BackgroundService
-    {
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class AutoPurgeWorker : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;

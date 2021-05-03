@@ -34,7 +34,7 @@ namespace FaqDiscordBot.Workers
                 await using var dbContext = scope.ServiceProvider.GetRequiredService<FaqDbContext>();
 
                 var danglingQuestions = await dbContext.Questions.AsQueryable()
-                    .Where(x => x.Answer == null && x.CreatedAt > DateTime.UtcNow + _options.PurgeThreshold)
+                    .Where(x => x.Answer == null && x.CreatedAt + _options.PurgeThreshold < DateTime.UtcNow)
                     .ToListAsync(stoppingToken);
 
                 dbContext.Questions.RemoveRange(danglingQuestions);

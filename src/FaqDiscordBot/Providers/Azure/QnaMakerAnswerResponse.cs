@@ -1,5 +1,6 @@
 ﻿using FaqDiscordBot.Abstractions;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace FaqDiscordBot.Providers.Azure
 {
@@ -11,7 +12,10 @@ namespace FaqDiscordBot.Providers.Azure
         public int Id { get; set; }
         public bool IsDocumentText { get; set; }
         public IEnumerable<object> Metadata { get; set; }
-    
+
+        [JsonIgnore]
+        public float ConfidenceScore => Score / 100;
+
         public override string ToString() => Answer;
     }
 }

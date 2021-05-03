@@ -139,6 +139,9 @@ Unsicher? Antworte mit `tutorial` um eine Anleitung zu erhalten.</value>
 
 Melde dich beim Orga-Team, falls du Schwierigkeiten dabei hast. Dein Mitwirken hilft anderen und zukünftigen Studierenden.</value>
   </data>
+  <data name="UnansweredQuestionInstructionsText_Footnote" xml:space="preserve">
+    <value>Du kannst innerhalb von {0} deine Antwort beisteuern.</value>
+  </data>
   <data name="UnansweredQuestionInstructionsText_Title_Pro" xml:space="preserve">
     <value>Ich konnte keine Antwort finden</value>
   </data>

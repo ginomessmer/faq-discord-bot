@@ -107,6 +107,15 @@ namespace FaqDiscordBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Du kannst innerhalb von {0} deine Antwort beisteuern..
+        /// </summary>
+        internal static string UnansweredQuestionInstructionsText_Footnote {
+            get {
+                return ResourceManager.GetString("UnansweredQuestionInstructionsText_Footnote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ich konnte keine Antwort finden.
         /// </summary>
         internal static string UnansweredQuestionInstructionsText_Title_Pro {

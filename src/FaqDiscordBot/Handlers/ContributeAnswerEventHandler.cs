@@ -5,17 +5,25 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
+using Microsoft.Extensions.Logging;
 
 namespace FaqDiscordBot.Handlers
 {
-    public class AddAnswerToQuestionEventHandler : INotificationHandler<MessageWithReferenceReceivedEvent>
+    public class ContributeAnswerEventHandler : INotificationHandler<MessageWithReferenceReceivedEvent>
     {
         private readonly FaqDbContext _dbContext;
+        private readonly TelemetryClient _telemetryClient;
+        private readonly ILogger<ContributeAnswerEventHandler> _logger;
         private readonly IMediator _mediator;
 
-        public AddAnswerToQuestionEventHandler(FaqDbContext dbContext, IMediator mediator)
+        public ContributeAnswerEventHandler(FaqDbContext dbContext, TelemetryClient telemetryClient,
+            ILogger<ContributeAnswerEventHandler> logger,
+            IMediator mediator)
         {
             _dbContext = dbContext;
+            _telemetryClient = telemetryClient;
+            _logger = logger;
             _mediator = mediator;
         }
 
@@ -32,6 +40,10 @@ namespace FaqDiscordBot.Handlers
 
             question.Answer = new Answer(userMessage.Content, userMessage.Id, userMessage.Author.Id);
             await _dbContext.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Answer contributed to question {QuestionId} by {UserId}",
+                question.Id, userMessage.Author.Id);
+            _telemetryClient.TrackEvent("Answer contributed");
 
             await _mediator.Publish(new AnswerAddedToQuestionEvent(question.Id), cancellationToken);
         }

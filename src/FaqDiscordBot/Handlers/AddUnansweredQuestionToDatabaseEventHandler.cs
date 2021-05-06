@@ -1,3 +1,4 @@
+using System;
 using FaqDiscordBot.Events;
 using FaqDiscordBot.Infrastructure;
 using FaqDiscordBot.Models;
@@ -26,10 +27,13 @@ namespace FaqDiscordBot.Handlers
             if (!_options.SelfServiceEnabled)
                 return;
 
-            await _dbContext.Questions.AddAsync(new Question(notification.QuestionMessage.Content,
+
+            var question = new Question(notification.QuestionMessage.Content,
                 notification.QuestionMessage.Author.Id,
-                notification.QuestionMessage.Id), cancellationToken);
-            
+                notification.QuestionMessage.Id,
+                _options.ReminderThreshold);
+
+            await _dbContext.Questions.AddAsync(question, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

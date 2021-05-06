@@ -12,14 +12,14 @@ using Microsoft.Extensions.Options;
 
 namespace FaqDiscordBot.Workers
 {
-    public class AutoPurgeWorker : BackgroundService
+    public class DanglingQuestionsAutoPurgeWorker : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly ILogger<AutoPurgeWorker> _logger;
+        private readonly ILogger<DanglingQuestionsAutoPurgeWorker> _logger;
         private readonly BotOptions _options;
 
-        public AutoPurgeWorker(IServiceProvider serviceProvider, IOptions<BotOptions> options,
-            ILogger<AutoPurgeWorker> logger)
+        public DanglingQuestionsAutoPurgeWorker(IServiceProvider serviceProvider, IOptions<BotOptions> options,
+            ILogger<DanglingQuestionsAutoPurgeWorker> logger)
         {
             _serviceProvider = serviceProvider;
             _options = options.Value;

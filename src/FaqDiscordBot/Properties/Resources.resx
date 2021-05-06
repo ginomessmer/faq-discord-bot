@@ -148,4 +148,10 @@ Contact the Orga team if you have trouble doing this. Your participation will he
   <data name="UnansweredQuestionInstructionsText_Title_Rookie" xml:space="preserve">
     <value>I could not find an answer. However, you can still find what you are looking for:</value>
   </data>
+  <data name="UnansweredQuestionReminderEmbed_Desc" xml:space="preserve">
+    <value>If so, it would be great if you could add your answer to the knowledge base. Reply with `tutorial` if you need help.</value>
+  </data>
+  <data name="UnansweredQuestionReminderEmbed_Title" xml:space="preserve">
+    <value>Hey! Have you already received an answer to your question?</value>
+  </data>
 </root>

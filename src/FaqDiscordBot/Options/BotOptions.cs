@@ -11,7 +11,9 @@ namespace FaqDiscordBot.Options
 
         public bool SelfServiceEnabled { get; set; } = true;
 
-        public TimeSpan PurgeThreshold { get; set; } = TimeSpan.FromDays(3);
+        public TimeSpan PurgeThreshold { get; set; } = TimeSpan.FromDays(5);
+
+        public TimeSpan ReminderThreshold { get; set; } = TimeSpan.FromDays(3);
 
         public string CultureName { get; set; } = CultureInfo.CurrentCulture.Name;
     }

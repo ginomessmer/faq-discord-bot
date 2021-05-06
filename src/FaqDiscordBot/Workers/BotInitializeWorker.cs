@@ -12,7 +12,7 @@ namespace FaqDiscordBot.Workers
     public class BotInitializeWorker : BackgroundService
     {
         private readonly ILogger<BotInitializeWorker> _logger;
-        private BotOptions _options;
+        private readonly BotOptions _options;
 
         public BotInitializeWorker(IOptions<BotOptions> options, ILogger<BotInitializeWorker> logger)
         {

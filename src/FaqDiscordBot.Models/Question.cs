@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FaqDiscordBot.Models
@@ -11,7 +12,7 @@ namespace FaqDiscordBot.Models
 
         public ulong UserId { get; set; }
 
-        public QuestionMeta Meta { get; set; }
+        public QuestionMeta Meta { get; set; } = new();
 
         public bool IsApproved { get; set; }
 
@@ -28,6 +29,11 @@ namespace FaqDiscordBot.Models
             {
                 MessageId = messageId
             };
+        }
+
+        public Question(string question, ulong userId, ulong messageId, TimeSpan reminderIn) : this(question, userId, messageId)
+        {
+            Meta.ReminderAt = DateTime.UtcNow.Add(reminderIn);
         }
 
         public Question()

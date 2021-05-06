@@ -6,6 +6,6 @@ namespace FaqDiscordBot.Models
     {
         public ulong MessageId { get; set; }
 
-        public DateTime LastReminderAt { get; set; }
+        public DateTime? ReminderAt { get; set; }
     }
 }

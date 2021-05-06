@@ -144,4 +144,10 @@ Melde dich beim Orga-Team, falls du Schwierigkeiten dabei hast. Dein Mitwirken h
   <data name="UnansweredQuestionInstructionsText_Title_Rookie" xml:space="preserve">
     <value>Ich konnte keine Antwort finden. Du kannst trotzdem fündig werden:</value>
   </data>
+  <data name="UnansweredQuestionReminderEmbed_Desc" xml:space="preserve">
+    <value>Falls ja, wäre es super, wenn du deine Antwort in die Wissensbasis eintragen könntest. Antworte mit `tutorial`, falls du Hilfe benötigst.</value>
+  </data>
+  <data name="UnansweredQuestionReminderEmbed_Title" xml:space="preserve">
+    <value>Hey! Hast du mittlerweile eine Antwort auf deine Frage erhalten?</value>
+  </data>
 </root>

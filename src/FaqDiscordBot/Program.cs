@@ -63,6 +63,7 @@ namespace FaqDiscordBot
                     services.AddHostedService<KnowledgeBaseUpdateWorker>();
                     services.AddHostedService<InitializeDatabaseWorker>();
                     services.AddHostedService<DanglingQuestionsAutoPurgeWorker>();
+                    services.AddHostedService<DanglingQuestionsReminderWorker>();
 
                     // Telemetry
                     services.AddApplicationInsightsTelemetryWorkerService();

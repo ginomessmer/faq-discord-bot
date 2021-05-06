@@ -32,7 +32,7 @@ namespace FaqDiscordBot.Handlers
             var (userMessage, referencedMessage) = notification;
 
             var question = await _dbContext.Questions.
-                FirstOrDefaultAsync(x => x.MessageId == referencedMessage.Id,
+                FirstOrDefaultAsync(x => x.Meta.MessageId == referencedMessage.Id,
                     cancellationToken);
 
             if (question is null)

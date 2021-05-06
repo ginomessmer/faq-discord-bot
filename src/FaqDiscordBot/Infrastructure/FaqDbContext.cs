@@ -14,19 +14,22 @@ namespace FaqDiscordBot.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Question>()
-                .OwnsMany(x => x.Phrasings, x =>
+            modelBuilder.Entity<Question>(b =>
+            {
+                b.OwnsMany(x => x.Phrasings, x =>
                 {
                     x.WithOwner();
                     x.ToTable("QuestionPhrasings");
                 });
 
-            modelBuilder.Entity<Question>()
-                .OwnsOne(x => x.Answer, x =>
+                b.OwnsOne(x => x.Answer, x =>
                 {
                     x.WithOwner();
                     x.ToTable("Answers");
                 });
+
+                b.OwnsOne(x => x.Meta, x => x.WithOwner());
+            });
 
             base.OnModelCreating(modelBuilder);
         }

@@ -132,5 +132,23 @@ namespace FaqDiscordBot.Properties {
                 return ResourceManager.GetString("UnansweredQuestionInstructionsText_Title_Rookie", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If so, it would be great if you could add your answer to the knowledge base. Reply with `tutorial` if you need help..
+        /// </summary>
+        public static string UnansweredQuestionReminderEmbed_Desc {
+            get {
+                return ResourceManager.GetString("UnansweredQuestionReminderEmbed_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hey! Have you already received an answer to your question?.
+        /// </summary>
+        public static string UnansweredQuestionReminderEmbed_Title {
+            get {
+                return ResourceManager.GetString("UnansweredQuestionReminderEmbed_Title", resourceCulture);
+            }
+        }
     }
 }

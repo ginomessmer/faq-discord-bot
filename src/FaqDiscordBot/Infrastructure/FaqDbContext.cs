@@ -1,3 +1,4 @@
+using System.Linq;
 using FaqDiscordBot.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,7 @@ namespace FaqDiscordBot.Infrastructure
 
         public FaqDbContext(DbContextOptions<FaqDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

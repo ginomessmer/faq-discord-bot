@@ -59,7 +59,8 @@ namespace FaqDiscordBot.Workers
 
             _telemetryClient.TrackEvent("Message received");
             using var operation = _telemetryClient.StartOperation<RequestTelemetry>(nameof(ClientOnMessageReceived));
-            
+            operation.Telemetry.Context.User.AuthenticatedUserId = message.Author.Id.ToString();
+
             using var scope = _serviceProvider.CreateScope();
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 

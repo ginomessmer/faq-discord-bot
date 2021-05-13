@@ -24,16 +24,19 @@ namespace FaqDiscordBot.Workers
     public class DanglingQuestionsReminderWorker : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
+        private readonly IDiscordClient _client;
         private readonly IMediator _mediator;
         private readonly ILogger<DanglingQuestionsAutoPurgeWorker> _logger;
         private readonly BotOptions _options;
 
         public DanglingQuestionsReminderWorker(IServiceProvider serviceProvider,
+            IDiscordClient client,
             IMediator mediator,
             IOptions<BotOptions> options,
             ILogger<DanglingQuestionsAutoPurgeWorker> logger)
         {
             _serviceProvider = serviceProvider;
+            _client = client;
             _mediator = mediator;
             _options = options.Value;
             _logger = logger;
@@ -47,7 +50,6 @@ namespace FaqDiscordBot.Workers
                 {
                     using var scope = _serviceProvider.CreateScope();
                     await using var dbContext = scope.ServiceProvider.GetRequiredService<FaqDbContext>();
-                    using var discordClient = scope.ServiceProvider.GetRequiredService<IDiscordClient>();
 
                     var questions = await GetDanglingQuestionsAsync(dbContext, stoppingToken);
 
@@ -55,7 +57,7 @@ namespace FaqDiscordBot.Workers
                     {
                         try
                         {
-                            var user = await discordClient.GetUserAsync(question.UserId);
+                            var user = await _client.GetUserAsync(question.UserId);
                             if (user is null)
                                 continue;
 

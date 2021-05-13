@@ -57,11 +57,13 @@ namespace FaqDiscordBot.Workers
             if (message is not IUserMessage userMessage)
                 return;
 
+            _telemetryClient.TrackEvent("Message received");
+            using var operation = _telemetryClient.StartOperation<RequestTelemetry>(nameof(ClientOnMessageReceived));
+            
             using var scope = _serviceProvider.CreateScope();
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
             await mediator.Publish(new DmReceivedEvent(userMessage));
-            _telemetryClient.TrackEvent("Message received");
         }
     }
 }

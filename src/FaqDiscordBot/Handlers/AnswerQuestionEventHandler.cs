@@ -43,11 +43,14 @@ namespace FaqDiscordBot.Handlers
             }
 
             using var typing = notification.Message.Channel.EnterTypingState();
-            using var holder = _telemetryClient.StartOperation<RequestTelemetry>("QnA Maker Request");
+            IAnswer answer;
 
-            // Ask
-            var response = await _faqService.AskAsync(notification.Message.Content);
-            var answer = response.GetBestAnswer();
+            using (_telemetryClient.StartOperation<DependencyTelemetry>("QnaMakerRequest"))
+            {
+                // Ask
+                var response = await _faqService.AskAsync(notification.Message.Content);
+                answer = response.GetBestAnswer();
+            }
 
             if (answer is not null && answer.ConfidenceScore >= _options.ConfidenceThreshold)
             {

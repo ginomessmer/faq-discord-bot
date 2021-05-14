@@ -40,7 +40,9 @@ namespace FaqDiscordBot.Workers
             // Add tutorial message
             await dbContext.Questions.AddAsync(new Question("tutorial", 0, 0)
             {
-                Answer = new Answer(Resources.UnansweredQuestionInstructionsText_Desc_Rookie, 0, 0)
+                Answer = new Answer($"{Resources.UnansweredQuestionInstructionsText_Desc_Rookie}\n\n" +
+                                    $"{Resources.UnansweredQuestionInstructionsImage_Url}", 0, 0),
+                IsApproved = true
             }, stoppingToken);
 
             // Pull from KB
